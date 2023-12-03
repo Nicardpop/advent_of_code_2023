@@ -22,7 +22,7 @@ void main() async {
     print("\n\n===========================================================");
     print("The Sum of the possible only :$result");
     print("===========================================================");
-    print("Sum results :$sec_result \n");
+    print("Sum results :$sec_result ");
     print("===========================================================");
   } catch (e) {
     print("error:$e");
