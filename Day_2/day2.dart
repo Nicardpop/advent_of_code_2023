@@ -16,11 +16,14 @@ void main() async {
     int result = 0;
     num sec_result = 0;
     await for (var line in Lines) {
-      //result += Finder(line);
+      result += Finder(line);
       sec_result += Finder_2(line);
     }
-    //print(result);
+    print("\n\n===========================================================");
+    print("The Sum of the possible only :$result");
+    print("===========================================================");
     print("Sum results :$sec_result \n");
+    print("===========================================================");
   } catch (e) {
     print("error:$e");
   }
@@ -31,17 +34,13 @@ int Finder(var line) {
   // id part :
   List<String> id_split_1 = line.split(':');
   var id_split1_2 = id_split_1[0].split(' ');
-
   var id = (int.parse(id_split1_2[1]));
-
   // semicolne part :
-
   var semi_split = id_split_1[1].split(';');
   for (int i = 0; i < semi_split.length; i++) {
     // print(semi_split[i] + "\n");
   }
   // comma part :
-
   var comma_split = [];
   for (int i = 0; i < semi_split.length; i++) {
     if (semi_split[i].contains(',')) {
@@ -55,36 +54,15 @@ int Finder(var line) {
     for (var j = 0; j < comma_split[i].length; j++) {
       if (comma_split[i][j].contains('blue')) {
         var list = comma_split[i][j].split(' ');
-        if (int.parse(list[1]) > 14) {
-          return 0;
-        } else {
-          print("done! blue");
-          continue;
-        }
-      } else {
-        print("Error: blue!");
+        if (int.parse(list[1]) > 14) return 0;
       }
       if (comma_split[i][j].contains('red')) {
         var list = comma_split[i][j].split(' ');
-        if (int.parse(list[1]) > 12) {
-          return 0;
-        } else {
-          print("done! red");
-          continue;
-        }
-      } else {
-        print("Error: red!");
+        if (int.parse(list[1]) > 12) return 0;
       }
       if (comma_split[i][j].contains('green')) {
         var list = comma_split[i][j].split(' ');
-        if (int.parse(list[1]) > 13) {
-          return 0;
-        } else {
-          print("done! green");
-          continue;
-        }
-      } else {
-        print("Error : green!");
+        if (int.parse(list[1]) > 13) return 0;
       }
     }
   }
@@ -97,17 +75,13 @@ int Finder_2(var line) {
   // id part :
   List<String> id_split_1 = line.split(':');
   var id_split1_2 = id_split_1[0].split(' ');
-
   var id = (int.parse(id_split1_2[1]));
-
   // semicolne part :
-
   var semi_split = id_split_1[1].split(';');
   for (int i = 0; i < semi_split.length; i++) {
     // print(semi_split[i] + "\n");
   }
   // comma part :
-
   var comma_split = [];
   for (int i = 0; i < semi_split.length; i++) {
     if (semi_split[i].contains(',')) {
@@ -116,7 +90,6 @@ int Finder_2(var line) {
       comma_split.add(semi_split[i]);
     }
   }
-
   var b_min = 0, r_min = 0, g_min = 0;
 // checking for impossible amounts :
   for (var i = 0; i < comma_split.length; i++) {
@@ -125,31 +98,16 @@ int Finder_2(var line) {
         var list = comma_split[i][j].split(' ');
         var blue = int.parse(list[1]);
         if (blue > b_min && blue != 0) b_min = blue;
-        print("done! $blue blue");
-        if (b_min == 0) {
-          b_min += 100;
-          print("Error!");
-        }
       }
       if (comma_split[i][j].contains('red')) {
         var list = comma_split[i][j].split(' ');
         var red = int.parse(list[1]);
         if (red > r_min && red != 0) r_min = red;
-        print("done! $red red");
-        if (r_min == 0) {
-          r_min += 100;
-          print("Error!");
-        }
       }
       if (comma_split[i][j].contains('green')) {
         var list = comma_split[i][j].split(' ');
         var green = int.parse(list[1]);
         if (green > g_min && green != 0) g_min = green;
-        print("done! $green green");
-        if (g_min == 0) {
-          g_min += 100;
-          print("Error!");
-        }
       }
     }
   }
